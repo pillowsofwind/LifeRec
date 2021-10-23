@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<!--<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".ContextActivity">-->
+
+    <LinearLayout
+        android:id="@+id/context_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="请记录以下环境信息："
+            android:textSize="22dp" />
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前是在室内/室外："
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <RadioGroup
+            android:id="@+id/indoor_radiobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26">
+
+        <RadioButton
+            android:id="@+id/door_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:checked="true"
+            android:text="室内" />
+
+        <RadioButton
+            android:id="@+id/door_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="室外" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前是否独处："
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <RadioGroup
+            android:id="@+id/company_radiobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26">
+
+            <RadioButton
+                android:id="@+id/company_alone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:checked="true"
+                android:text="独处" />
+
+
+        <RadioButton
+            android:id="@+id/company_stranger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="有其他人，无交流/基本无交流"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/company_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="有其他人，有交流"
+            android:textSize="18dp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前大致地点："
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <RadioGroup
+            android:id="@+id/location_radiobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26">
+
+            <RadioButton
+                android:id="@+id/location_dorm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:checked="true"
+                android:text="宿舍/家中" />
+
+
+            <RadioButton
+                android:id="@+id/location_classroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="教室（上课状态）"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/location_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图书馆/自习室/讨论室"
+                android:textSize="18dp" />
+
+
+            <RadioButton
+                android:id="@+id/location_lab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实验室/办公室"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/location_res"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="食堂/餐厅"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/location_gym"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="运动场所"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/location_entertain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="娱乐场所"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/location_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他"
+                android:textSize="18dp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前地点（如上一问题中选择'其他'，请填写）："
+            android:textSize="16dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <EditText
+            android:id="@+id/location_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <Button
+            android:id="@+id/submit_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="提交"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+<!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->

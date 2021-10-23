@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.请寻找较安静的地方，戴上耳机。\n2. 点击聆听以下音乐。\n3. 在听音乐后返回本页面评分及记录情绪。"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ListView
+        android:id="@+id/music_list"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+
+        android:layout_weight="1"
+        android:divider="@null"
+        android:groupIndicator="@null"
+        android:layoutDirection="ltr"></ListView>
+
+    <Button
+        android:id="@+id/music_back_button"
+        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_gravity="center"
+        android:layout_weight="15"
+        android:background="@drawable/btn_shape_green"
+        android:text="返回"
+        android:textSize="15dp"/>
+</LinearLayout>
