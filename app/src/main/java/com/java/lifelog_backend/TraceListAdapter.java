@@ -27,8 +27,9 @@ public class TraceListAdapter extends BaseAdapter {
         traceList.add(new Trace(time, event, mood));
         notifyDataSetChanged();
     }
-    public void addItemFirst(String time, String event, double[] mood){
-        traceList.add(0,new Trace(time, event, mood));
+
+    public void addItemFirst(String time, String event, double[] mood) {
+        traceList.add(0, new Trace(time, event, mood));
         notifyDataSetChanged();
     }
 
@@ -66,7 +67,7 @@ public class TraceListAdapter extends BaseAdapter {
             holder.tvTopLine = (TextView) convertView.findViewById(R.id.tvTopLine);
             holder.tvDot = (TextView) convertView.findViewById(R.id.tvDot);
             holder.delete_btn = convertView.findViewById(R.id.btn_delete_item);
-            holder.insert_btn=convertView.findViewById(R.id.btn_insert_item);
+            holder.insert_btn = convertView.findViewById(R.id.btn_insert_item);
             convertView.setTag(holder);
         }
 
@@ -97,11 +98,11 @@ public class TraceListAdapter extends BaseAdapter {
         holder.insert_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double [] mood = new double [2];
-                mood[0]=0;
-                mood[1]=0;
+                double[] mood = new double[2];
+                mood[0] = 0;
+                mood[1] = 0;
 //                adapter.addItem("time", "event", mood);
-                traceList.add(position+1,new Trace("00:00", "活动", mood));
+                traceList.add(position + 1, new Trace("00:00", "activity", mood));
                 notifyDataSetChanged();
             }
         });
@@ -109,10 +110,10 @@ public class TraceListAdapter extends BaseAdapter {
         holder.time.setText(trace.getTime());
         holder.event.setText(trace.getEvent());
         StringBuilder sb = new StringBuilder();
-        sb.append("心情信息：\n");
-        sb.append(String.format("%.2f",trace.getMood()[0]));
+        sb.append("Your mood: \n");
+        sb.append(String.format("%.2f", trace.getMood()[0]));
         sb.append(" , ");
-        sb.append(String.format("%.2f",trace.getMood()[1]));
+        sb.append(String.format("%.2f", trace.getMood()[1]));
         holder.mood.setText(sb);
         return convertView;
     }

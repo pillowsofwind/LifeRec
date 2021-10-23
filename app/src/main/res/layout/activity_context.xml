@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="请记录以下环境信息："
+            android:text="Please record your environment info: "
             android:textSize="22dp" />
 
 
@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前是在室内/室外："
+            android:text="Your location:"
             android:textSize="20dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,21 +58,21 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:checked="true"
-            android:text="室内" />
+            android:text="Indoor" />
 
         <RadioButton
             android:id="@+id/door_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18dp"
-            android:text="室外" />
+            android:text="Outdoor" />
         </RadioGroup>
 
         <TextView
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前是否独处："
+            android:text="Your surrounding: "
             android:textSize="20dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,21 +98,21 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:checked="true"
-                android:text="独处" />
+                android:text="I'm alone" />
 
 
         <RadioButton
             android:id="@+id/company_stranger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="有其他人，无交流/基本无交流"
+            android:text="Somebody around but no conversation"
             android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/company_friend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="有其他人，有交流"
+            android:text="Somebody around and conversation"
             android:textSize="18dp" />
         </RadioGroup>
 
@@ -120,7 +120,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前大致地点："
+            android:text="Where are you？"
             android:textSize="20dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -146,21 +146,21 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:checked="true"
-                android:text="宿舍/家中" />
+                android:text="At home" />
 
 
             <RadioButton
                 android:id="@+id/location_classroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="教室（上课状态）"
+                android:text="At class"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:id="@+id/location_library"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="图书馆/自习室/讨论室"
+                android:text="At library"
                 android:textSize="18dp" />
 
 
@@ -168,35 +168,35 @@
                 android:id="@+id/location_lab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="实验室/办公室"
+                android:text="At lab/office"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:id="@+id/location_res"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="食堂/餐厅"
+                android:text="At diner"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:id="@+id/location_gym"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="运动场所"
+                android:text="At sports facilities"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:id="@+id/location_entertain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="娱乐场所"
+                android:text="At entertainment facilities"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:id="@+id/location_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="其他"
+                android:text="Others"
                 android:textSize="18dp" />
 
         </RadioGroup>
@@ -206,7 +206,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前地点（如上一问题中选择'其他'，请填写）："
+            android:text="Your Current location (If you selevt 'Others' in the above question):"
             android:textSize="16dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -231,7 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="提交"
+            android:text="Submit"
             android:textSize="18sp" />
 
     </LinearLayout>

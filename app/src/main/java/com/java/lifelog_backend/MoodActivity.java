@@ -50,7 +50,7 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
     boolean backFromMusicDialog;
     boolean fileReadMood;
     private AlertDialog.Builder builder;
-    String pmood="";
+    String pmood = "";
 
     //以下五个变量全部是音乐相关
     String responseText;
@@ -82,29 +82,23 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
         String intentTitle = "";
         intentTitle = getIntent().getStringExtra("title");
         pmood = getIntent().getStringExtra("pmood");
-        if (intentTitle!=null)
-            if (intentTitle.equals("music")){
-                tx.setText("你现在的心情如何");
+        if (intentTitle != null)
+            if (intentTitle.equals("music")) {
+                tx.setText("How are you feeling now?");
                 showMusicDialog = false;
                 fromMusicDialog = true;
-            }
-            else if(intentTitle.equals("你当时的心情如何？？"))
-            {
+            } else if (intentTitle.equals("How are you feeling then??")) {
                 System.out.println("reach hear");
-                tx.setText("你当时的心情如何？");
+                tx.setText("What's your feeling then?");
                 fileReadMood = false;
                 showMusicDialog = true;
-            }
-            else if(intentTitle.equals("你当时的心情如何？"))
-            {
+            } else if (intentTitle.equals("How are you feeling then?")) {
                 System.out.println("but hear");
-                tx.setText("你当时的心情如何？");
+                tx.setText("What's your feeling then?");
                 //fileReadMood = false;
                 // showMusicDialog = true;
                 showMusicDialog = false;
-            }
-            else
-            {
+            } else {
                 tx.setText(getIntent().getStringExtra("title"));
                 showMusicDialog = false;
             }
@@ -134,30 +128,23 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_mood_submit:
-                if(fromMusicDialog)
-                {
+                if (fromMusicDialog) {
                     //todo
                     Intent intent = new Intent();
                     intent.putExtra("mood", mood);
                     setResult(RESULT_OK, intent);
                     finish();
-                }
-                else
-                {
-                    if(showMusicDialog)
-                    {
+                } else {
+                    if (showMusicDialog) {
                         showMusicDialog = false;
                         showMusicDialog();
-                    }
-                    else
-                    {
+                    } else {
                         Intent intent = new Intent();
                         intent.putExtra("mood", mood);
                         setResult(RESULT_OK, intent);
-                        if(backFromMusicDialog)
-                        {
-                            double[] latestMood = new double[]{0,0};
-                            if(fileReadMood) latestMood = getLatestMood();
+                        if (backFromMusicDialog) {
+                            double[] latestMood = new double[]{0, 0};
+                            if (fileReadMood) latestMood = getLatestMood();
                             else latestMood = mood;
                             JsonParser parser = new JsonParser();
                             JsonObject object = parser.parse(responseText).getAsJsonObject();
@@ -166,40 +153,34 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                             objectList.add(object.getAsJsonObject("1"));
                             objectList.add(object.getAsJsonObject("2"));
                             JsonObject allObject = new JsonObject();
-                            for(int i=0;i<musicNum;i++)
-                            {
+                            for (int i = 0; i < musicNum; i++) {
                                 JsonObject musicObject = new JsonObject();
-                                if(i == selectedIndex)
-                                {
+                                if (i == selectedIndex) {
                                     musicObject.addProperty("click", 1);
                                     musicObject.addProperty("preference", userPreference);
-                                }
-                                else
-                                {
+                                } else {
                                     musicObject.addProperty("click", 0);
                                     musicObject.addProperty("preference", 0);
                                 }
                                 musicObject.addProperty("mid", objectList.get(i).get("mid").getAsString());
-                                if(pmood!=null && pmood.length()>0){
+                                if (pmood != null && pmood.length() > 0) {
                                     musicObject.addProperty("mood_before", pmood);
+                                } else {
+                                    musicObject.addProperty("mood_before", latestMood[0] + "," + latestMood[1]);
                                 }
-                                else{
-                                    musicObject.addProperty("mood_before", latestMood[0]+","+latestMood[1]);
-                                }
-                                musicObject.addProperty("mood_after", new_mood[0]+","+new_mood[1]);
+                                musicObject.addProperty("mood_after", new_mood[0] + "," + new_mood[1]);
                                 musicObject.addProperty("valence", objectList.get(i).get("valence").getAsString());
-                                if(i == 0)
+                                if (i == 0)
                                     allObject.addProperty("0", musicObject.toString());
-                                else if(i == 1)
-                                    allObject.addProperty("1",musicObject.toString());
-                                else if(i ==2)
+                                else if (i == 1)
+                                    allObject.addProperty("1", musicObject.toString());
+                                else if (i == 2)
                                     allObject.addProperty("2", musicObject.toString());
                             }
                             OkHttpClient client = new OkHttpClient();
                             RequestBody body = null;
                             body = new FormBody.Builder().add("music", allObject.toString()).build();
-                            if(body != null)
-                            {
+                            if (body != null) {
                                 Request request = new Request.Builder().url(serverURL).post(body).build();
                                 Call call = client.newCall(request);
                                 call.enqueue(new Callback() {
@@ -215,11 +196,9 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                                         finish();
                                     }
                                 });
-                            }
-                            else finish();
+                            } else finish();
 
-                        }
-                        else finish();
+                        } else finish();
                         //finish();
                     }
                 }
@@ -269,8 +248,7 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                 findViewById(R.id.mood_cursor).setX(location[0] - (int) (cursor_size / 2));
                 findViewById(R.id.mood_cursor).setY(location[1] - (int) (cursor_size / 2));
 
-                if(!backFromMusicDialog)
-                {
+                if (!backFromMusicDialog) {
                     // set mood
                     mood[0] = 4 * (location[0] - mid_x) / square_len;
                     mood[1] = -4 * (location[1] - mid_y) / square_len;
@@ -284,9 +262,7 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                     } else if (mood[1] < -4.0) {
                         mood[1] = -4.0;
                     }
-                }
-                else
-                {
+                } else {
                     // set mood
                     new_mood[0] = 4 * (location[0] - mid_x) / square_len;
                     new_mood[1] = -4 * (location[1] - mid_y) / square_len;
@@ -310,38 +286,37 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
     private void update() {
         // update location
         StringBuilder sb = new StringBuilder();
-        sb.append("心情信息：\n");
-        if(!backFromMusicDialog)
+        sb.append("Your mood: \n");
+        if (!backFromMusicDialog)
             sb.append(String.format("%.2f", mood[0]));
         else sb.append(String.format("%.2f", new_mood[0]));
         sb.append(" , ");
-        if(!backFromMusicDialog)
+        if (!backFromMusicDialog)
             sb.append(String.format("%.2f", mood[1]));
         else sb.append(String.format("%.2f", new_mood[1]));
         location_text.setText(sb.toString());
     }
-    private void showMusicDialog()
-    {
+
+    private void showMusicDialog() {
         builder = new AlertDialog.Builder(this).setIcon(R.mipmap.ic_launcher).setTitle("Music")
-                .setMessage("你是否想听音乐").setPositiveButton("是", new DialogInterface.OnClickListener() {
+                .setMessage("Would you like to hear some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodActivity.this, "听音乐", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent();
                         intent.setClass(MoodActivity.this, MusicActivity.class);
                         intent.putExtra("title", "mood");
-                        if(pmood!=null){
-                            intent.putExtra("pmood",pmood);
-                        }
-                        else{
-                            String curEmotionString =  String.format("%.3f", mood[0]) + "," + String.format("%.3f", mood[1]);
-                            intent.putExtra("pmood",curEmotionString);
+                        if (pmood != null) {
+                            intent.putExtra("pmood", pmood);
+                        } else {
+                            String curEmotionString = String.format("%.3f", mood[0]) + "," + String.format("%.3f", mood[1]);
+                            intent.putExtra("pmood", curEmotionString);
                         }
                         startActivityForResult(intent, 10);
                         TextView tx = findViewById(R.id.mood_text);
-                        tx.setText("你现在的心情如何？");
+                        tx.setText("How are you feeling now?");
                     }
-                }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodActivity.this, "不听音乐", Toast.LENGTH_LONG).show();
@@ -354,26 +329,25 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
         builder.create().show();
     }
 
-    private double[] getLatestMood()
-    {
+    private double[] getLatestMood() {
         String fileName = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/emotion/user_submitted_emotions.txt";
         File file = new File(fileName);
         BufferedReader reader = null;
-        double[] latestMood = new double[]{0,0};
-        try{
-            if(file.exists())
-            {
+        double[] latestMood = new double[]{0, 0};
+        try {
+            if (file.exists()) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                 String line = "";
                 String temp = "";
                 //读取最后一行的内容
-                while((temp = reader.readLine()) != null) { line = temp;}
+                while ((temp = reader.readLine()) != null) {
+                    line = temp;
+                }
                 int begin = 0, end = 0;
-                for(int i=0;i<line.length();i++)
-                {
-                    if(line.charAt(i) == "(".toCharArray()[0])
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == "(".toCharArray()[0])
                         begin = i + 1;
-                    if(line.charAt(i) == ")".toCharArray()[0])
+                    if (line.charAt(i) == ")".toCharArray()[0])
                         end = i;
                 }
                 String array = line.substring(begin, end);
@@ -382,16 +356,12 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                 latestMood[1] = Float.parseFloat(temp2[1]);
                 //System.out.println(latestMood[0]);
             }
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            try{
-                if(reader != null) reader.close();
-            }
-            catch (Exception e)
-            {
+        } finally {
+            try {
+                if (reader != null) reader.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

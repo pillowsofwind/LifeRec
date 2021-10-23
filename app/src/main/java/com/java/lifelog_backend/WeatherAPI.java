@@ -20,26 +20,26 @@ import static android.content.ContentValues.TAG;
 public class WeatherAPI {
     String APIkey = "5c21462280a44743bc8737c8212deab9";
     Handler handler;
-    WeatherAPI(Handler weatherHandler)
-    {
+
+    WeatherAPI(Handler weatherHandler) {
         HeConfig.init("HE2104182321331976", APIkey);
         HeConfig.switchToDevService();
         handler = weatherHandler;
     }
-    public void getWeather(final Context context, String location)
-    {
+
+    public void getWeather(final Context context, String location) {
         QWeather.getWeatherNow(context, location, new QWeather.OnResultWeatherNowListener() {
             @Override
             public void onError(Throwable e) {
                 Log.i(TAG, "getWeather onError: " + e);
                 System.out.println("weatherFail");
-                Toast.makeText(context.getApplicationContext(), "请求天气失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(), "Failed to acquire weather information", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(WeatherNowBean weatherNowBean) {
                 Message msg = new Message();
-                msg.obj = (Object)new Gson().toJson(weatherNowBean);
+                msg.obj = (Object) new Gson().toJson(weatherNowBean);
                 handler.sendMessage(msg);
             }
         });

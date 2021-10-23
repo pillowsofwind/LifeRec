@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="请仔细回忆，从上一次记录以来，是否发生了激发情绪的短时事件？\n （指持续数秒到数分钟的事件，如看到某新闻、得知作业成绩、收到小礼物等）"
-        android:textSize="20dp"
+        android:text="Please recall carefully whether there have been short-term events to stimulate emotions since the last record\ N (refers to events lasting from seconds to minutes, i.e. learning a news, knowing your grades, receiving gifts, etc.)"
         android:textColor="@android:color/black"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -34,21 +34,23 @@
             android:id="@+id/mood_request_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="是" />
+            android:text="Yes"
+            android:textSize="20dp" />
 
         <RadioButton
             android:id="@+id/mood_request_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="否" />
+            android:text="No"
+            android:textSize="20dp" />
 
     </RadioGroup>
 
     <TextView
         android:id="@+id/mood_request_text1"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
 
         android:text=""

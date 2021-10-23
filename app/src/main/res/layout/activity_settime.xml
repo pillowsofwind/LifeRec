@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="选择时间"
+        android:text="Set time: "
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
@@ -30,7 +30,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="确定" />
+        android:text="Finish" />
 
 </LinearLayout>
 

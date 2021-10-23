@@ -18,14 +18,14 @@ public class Trace {
     public Trace() {
     }
 
-    public Trace(String time, String event, double moodx, double moody){
+    public Trace(String time, String event, double moodx, double moody) {
         this.time = time;
         this.event = event;
         double array[] = {moodx, moody};
         this.mood = array;
     }
 
-    public Trace(String time, String event, double [] mood) {
+    public Trace(String time, String event, double[] mood) {
         this.time = time;
         this.event = event;
         this.mood = mood;
@@ -52,7 +52,7 @@ public class Trace {
         return mood;
     }
 
-    public void setMood(double [] mood) {
+    public void setMood(double[] mood) {
         this.mood = mood;
     }
 }

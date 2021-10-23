@@ -78,7 +78,7 @@ public class MoodSubmitActivity extends AppCompatActivity implements View.OnClic
         state = 1;
 
         button.setVisibility(View.VISIBLE);
-        button.setText("下一步");
+        button.setText("Next");
 
         // clear all data collected
         emotion_event = "";
@@ -86,7 +86,7 @@ public class MoodSubmitActivity extends AppCompatActivity implements View.OnClic
         ans.setText("");
         question_text.setVisibility(View.VISIBLE);
         ans.setVisibility(View.VISIBLE);
-        question_text.setText("请简要描述激发你强烈情绪的事件：");
+        question_text.setText("Please briefly describe the events that triggered your strong emotions: ");
     }
 
     @Override
@@ -122,7 +122,7 @@ public class MoodSubmitActivity extends AppCompatActivity implements View.OnClic
                     case 1:
                         emotion_event = ans.getText().toString();
 //                            Toast.makeText(getApplicationContext(), emotion_event, Toast.LENGTH_SHORT).show();
-                        question_text.setText("请记录事件发生时刻：");
+                        question_text.setText("Please record the moment: ");
                         ans.setVisibility(View.INVISIBLE);
                         timePicker.setVisibility(View.VISIBLE);
                         timePicker.setIs24HourView(true);
@@ -139,7 +139,7 @@ public class MoodSubmitActivity extends AppCompatActivity implements View.OnClic
                         // jump to Mood to collect emotion
                         Intent intent = new Intent();
                         intent.setClass(MoodSubmitActivity.this, MoodActivity.class);
-                        intent.putExtra("title","你当时的心情如何？？");
+                        intent.putExtra("title", "How are you feeling then??");
                         this.startActivityForResult(intent, 200);
                         break;
                 }
@@ -164,15 +164,15 @@ public class MoodSubmitActivity extends AppCompatActivity implements View.OnClic
             StringBuilder sb = new StringBuilder();
             String timeString = emotion_time[0] + ":" + emotion_time[1] + ":" + emotion_time[2] + ":" + emotion_time[3] + ":" + emotion_time[4];
             sb.append(timeString).append("\t");
-            sb.append(emotion_event.replace('\n',' ')).append("\t");
-            String emotionString = "(" + String.format("%.2f",emotion[0]) + "," + String.format("%.2f",emotion[1]) + ")";
-            Log.e("Record",emotionString);
+            sb.append(emotion_event.replace('\n', ' ')).append("\t");
+            String emotionString = "(" + String.format("%.2f", emotion[0]) + "," + String.format("%.2f", emotion[1]) + ")";
+            Log.e("Record", emotionString);
             sb.append(emotionString).append("\te");
             out.write(sb.toString());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Record",e.toString());
+            Log.e("Record", e.toString());
             Toast.makeText(getApplicationContext(), "Recorded error!", Toast.LENGTH_LONG).show();
         } finally {
             try {

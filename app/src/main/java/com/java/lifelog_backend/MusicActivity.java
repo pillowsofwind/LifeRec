@@ -180,7 +180,7 @@ public class MusicActivity  extends AppCompatActivity{
                             public void onFailure(Call call, IOException e) {
                                 Log.i("app", "提交失败");
                                 Looper.prepare();
-                                Toast.makeText(getBaseContext(),"提交失败",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(),"Failed",Toast.LENGTH_SHORT).show();
                                 Looper.loop();
                                 finish();
                             }
@@ -189,7 +189,7 @@ public class MusicActivity  extends AppCompatActivity{
                             public void onResponse(Call call, Response response) throws IOException {
                                 Log.i("app", "提交成功");
                                 Looper.prepare();
-                                Toast.makeText(getBaseContext(),"提交成功" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(),"Succeed" ,Toast.LENGTH_SHORT).show();
                                 Looper.loop();
                                 finish();
                             }
@@ -225,7 +225,7 @@ public class MusicActivity  extends AppCompatActivity{
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getBaseContext(),"无网络",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),"No internet connection",Toast.LENGTH_SHORT).show();
                         // Intent i = new Intent(MusicActivity.this, MainActivity.class);
                         // startActivity(i);
                         finish();
@@ -278,7 +278,7 @@ public class MusicActivity  extends AppCompatActivity{
                         @Override
                         public void run()
                         {
-                            Toast.makeText(getBaseContext(),"获取音乐信息失败",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Fail to acquire music information",Toast.LENGTH_SHORT).show();
                             // Intent i = new Intent(MusicActivity.this, MainActivity.class);
                             // startActivity(i);
                             finish();
@@ -328,8 +328,8 @@ public class MusicActivity  extends AppCompatActivity{
     private void showRatingDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicActivity.this);
-        builder.setTitle("请给刚才这首歌打个分吧：");
-        final String[] tempKey = {"1分（非常不喜欢）", "2星（不喜欢）", "3星（一般）", "4星（喜欢）", "5星（非常喜欢）"};
+        builder.setTitle("Please score this song just now:");
+        final String[] tempKey = {"1 (strongly dislike)", "2 (dislike)", "3 (average)", "4 (like)", "5 (strongly like)"};
         builder.setItems(tempKey, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

@@ -11,13 +11,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lifelog"
+        android:text="LifeRec"
         android:textSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintVertical_bias="0.5">
 
         <Button
@@ -36,9 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:alpha="0.9"
             android:background="@drawable/btn_shape"
-            android:text="记录心情（定时）" />
+            android:text="Record mood (timing)" />
 
         <androidx.slidingpanelayout.widget.SlidingPaneLayout
             android:layout_width="match_parent"
@@ -50,9 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:alpha="0.9"
             android:background="@drawable/btn_shape"
-            android:text="记录心情（主动）" />
+            android:text="Record emotion" />
 
         <androidx.slidingpanelayout.widget.SlidingPaneLayout
             android:layout_width="match_parent"
@@ -64,9 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:alpha="0.9"
             android:background="@drawable/btn_shape"
-            android:text="拍照" />
+            android:text="Take photo" />
 
         <androidx.slidingpanelayout.widget.SlidingPaneLayout
             android:layout_width="match_parent"
@@ -78,9 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:alpha="0.7"
             android:background="@drawable/btn_shape_green"
-            android:text="设置" />
+            android:text="Configuration" />
 
     </LinearLayout>
 
@@ -88,8 +83,7 @@
         android:id="@+id/btn_trace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
-        android:text="记录今天的活动信息"
+        android:text="Record today's activities"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

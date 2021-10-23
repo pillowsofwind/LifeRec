@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //获取GPS权限
         if (!isGpsAble()) {
-            Toast.makeText(MainActivity.this, "请开启GPS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Please enable GPS access", Toast.LENGTH_SHORT).show();
             openGPS();
         }
 
@@ -239,20 +239,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == 1) {
             switch (grantResults[0]) {
                 case 0:
-                    Toast.makeText(MainActivity.this, "已打开GPS权限，请正常使用", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "GPS access granted", Toast.LENGTH_LONG).show();
                     break;
                 case -1:
-                    Toast.makeText(MainActivity.this, "应用缺少提供位置信息的权限，请打开所需权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "GPS access denied, please enable the permission", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivityForResult(intent, 0);
                     break;
             }
             switch (grantResults[1]) {
                 case 0:
-                    Toast.makeText(MainActivity.this, "已打开文件读写权限，请正常使用", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "File read/write operation granted", Toast.LENGTH_LONG).show();
                     break;
                 case -1:
-                    Toast.makeText(MainActivity.this, "应用缺少文件读写的权限，请打开所需权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "File read/write operation denied, please enable the permission", Toast.LENGTH_LONG).show();
                     //Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     //startActivityForResult(intent, 0);
                     break;
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     openCamera();
                     break;
                 case 1:
-                    Toast.makeText(MainActivity.this, "应用无法使用相机，请打开所需权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Camera not available, please enable the permission", Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, 1);
         } catch (IOException e) {
-            Toast toast= Toast.makeText(getApplicationContext(),"照片保存失败，请重新拍摄！",Toast.LENGTH_LONG);
+            Toast toast= Toast.makeText(getApplicationContext(),"Failed to save the picture, please take the picture again!",Toast.LENGTH_LONG);
             toast.show();
             e.printStackTrace();
         }
@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (resultCode == RESULT_OK) {
                     photoNum++;
                     galleryAddPic(imageUri);
-                    Toast toast= Toast.makeText(getApplicationContext(),"照片已保存至"+fileName,Toast.LENGTH_LONG);
+                    Toast toast= Toast.makeText(getApplicationContext(),"Picture successfully saved to "+fileName,Toast.LENGTH_LONG);
                     toast.show();
                 }
                 break;

@@ -54,7 +54,7 @@ public class TraceActivity extends AppCompatActivity {
     public RecordDialog recordDialog;
     private Button add_item_button;
     private Button save_button;
-    private double[] mood={0,0};
+    private double[] mood = {0, 0};
     private int pos;
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @SuppressLint("DefaultLocale")
@@ -74,8 +74,7 @@ public class TraceActivity extends AppCompatActivity {
                     try {
                         adapter.getItem(pos).setEvent(recordDialog.text_event.getText().toString().trim());
                         adapter.getItem(pos).setMood(mood);
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         Log.e("Music_error", e.toString());
                         e.printStackTrace();
                     }
@@ -96,6 +95,7 @@ public class TraceActivity extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (data == null) {
@@ -106,10 +106,10 @@ public class TraceActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     mood = data.getExtras().getDoubleArray("mood");
                     StringBuilder sb = new StringBuilder();
-                    sb.append("心情信息：\n");
-                    sb.append(String.format("%.2f",mood[0]));
+                    sb.append("Your mood: \n");
+                    sb.append(String.format("%.2f", mood[0]));
                     sb.append(" , ");
-                    sb.append(String.format("%.2f",mood[1]));
+                    sb.append(String.format("%.2f", mood[1]));
                     recordDialog.text_mood.setText(sb.toString());
 //                    String notice = "You've submitted successfully with emotion (" + mood[0] + "," + mood[1] + ").";
 //                    Toast.makeText(getApplicationContext(), notice, Toast.LENGTH_SHORT).show();
@@ -122,6 +122,7 @@ public class TraceActivity extends AppCompatActivity {
                 break;
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +134,7 @@ public class TraceActivity extends AppCompatActivity {
     private void findView() {
         lvTrace = (ListView) findViewById(R.id.lvTrace);
         add_item_button = (Button) findViewById(R.id.btn_add_item_pop);
-        save_button=(Button)findViewById(R.id.btn_save);
+        save_button = (Button) findViewById(R.id.btn_save);
     }
 
     private void initData() {
@@ -145,9 +146,8 @@ public class TraceActivity extends AppCompatActivity {
         String tracePath = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/tracer";
         File file = new File(tracePath + "/traceInfo.txt");
         int existFile = 0;
-        if(file.exists())
-        {
-            FileReader fileReader= null;
+        if (file.exists()) {
+            FileReader fileReader = null;
             try {
                 fileReader = new FileReader(file);
             } catch (FileNotFoundException e) {
@@ -155,14 +155,14 @@ public class TraceActivity extends AppCompatActivity {
             }
             Scanner sc = new Scanner(fileReader);
             String line = null;
-            while((sc.hasNextLine()&&(line=sc.nextLine())!=null)){
-                if(!sc.hasNextLine()){
+            while ((sc.hasNextLine() && (line = sc.nextLine()) != null)) {
+                if (!sc.hasNextLine()) {
                     break;
                 }
             }
             sc.close();
-            if(line!=null){
-                Log.d("load_act",line);
+            if (line != null) {
+                Log.d("load_act", line);
                 try {
                     JsonParser parser = new JsonParser();
                     JsonObject actTrace = (JsonObject) parser.parse(line);
@@ -170,19 +170,19 @@ public class TraceActivity extends AppCompatActivity {
 //                    JSONObject actTrace = new JSONObject(line);
                     String today = String.format("%d,%d,%d", year, month, day);
                     String date = actTrace.get("timeInfo").toString();
-                    if(date.indexOf(today)!=-1) {
-                        Log.d("load_act",actTrace.get("traceList").toString());
+                    if (date.indexOf(today) != -1) {
+                        Log.d("load_act", actTrace.get("traceList").toString());
                         String actString = actTrace.get("traceList").toString();
                         Gson gson = new Gson();
                         JsonArray actArray = new JsonParser().parse(actString).getAsJsonArray();
-                        for (JsonElement jsonElement : actArray){
+                        for (JsonElement jsonElement : actArray) {
                             JsonObject obj = jsonElement.getAsJsonObject();
                             String time = obj.get("time").getAsString();
                             String event = obj.get("event").getAsString();
                             double[] mood = new double[2];
                             mood[0] = obj.get("moodx").getAsDouble();
                             mood[1] = obj.get("moody").getAsDouble();
-                            traceList.add(new Trace(time,event,mood));
+                            traceList.add(new Trace(time, event, mood));
                         }
 //                        Log.d("load_act",actList.toString());
 //                        for(Trace t : (ArrayList<Trace>)actTrace.get("traceList")){
@@ -191,7 +191,7 @@ public class TraceActivity extends AppCompatActivity {
                         existFile = 1;
                     }
 
-                }catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -199,7 +199,7 @@ public class TraceActivity extends AppCompatActivity {
         }
 
 
-        if(existFile==0) {
+        if (existFile == 0) {
             String segmentTime = String.format("%04d-%02d-%02d", year, month, day);
             //ArrayList<String> timeList = segmentData("2021-04-18");
             ArrayList<String> timeList = segmentData(segmentTime);
@@ -225,23 +225,22 @@ public class TraceActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //弹窗
                 pos = position;
-                String [] arr;
-                if(!traceList.get(pos).getTime().equals("time")){
+                String[] arr;
+                if (!traceList.get(pos).getTime().equals("time")) {
                     arr = traceList.get(pos).getTime().split(":");
-                }
-                else{
-                    arr=new String[2];
-                    arr[0]="0";
-                    arr[1]="0";
+                } else {
+                    arr = new String[2];
+                    arr[0] = "0";
+                    arr[1] = "0";
                 }
                 recordDialog.tp_time.setHour(Integer.parseInt(arr[0]));
                 recordDialog.tp_time.setMinute(Integer.parseInt(arr[1]));
                 recordDialog.text_event.setText(traceList.get(pos).getEvent());
                 StringBuilder sb = new StringBuilder();
-                sb.append("心情信息：\n");
-                sb.append(String.format("%.2f",traceList.get(pos).getMood()[0]));
+                sb.append("Your mood: \n");
+                sb.append(String.format("%.2f", traceList.get(pos).getMood()[0]));
                 sb.append(" , ");
-                sb.append(String.format("%.2f",traceList.get(pos).getMood()[1]));
+                sb.append(String.format("%.2f", traceList.get(pos).getMood()[1]));
                 recordDialog.text_mood.setText(sb);
                 recordDialog.showAtLocation(findViewById(R.id.activity_trace), Gravity.CENTER, 0, 0);
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
@@ -253,62 +252,58 @@ public class TraceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.v("add a item", "???");
-                double [] mood = new double [2];
-                mood[0]=0;
-                mood[1]=0;
-                adapter.addItemFirst("time", "活动", mood);
+                double[] mood = new double[2];
+                mood[0] = 0;
+                mood[1] = 0;
+                adapter.addItemFirst("time", "activity", mood);
             }
         });
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                traceList=adapter.traceList;
-                Log.v("haha","save complete");
+                Log.v("haha", "save complete");
                 JSONObject root = new JSONObject();
                 Calendar calendars = Calendar.getInstance();
                 calendars.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
-                String timeInfo = String.valueOf(calendars.get(Calendar.YEAR)+","+
-                                (calendars.get(Calendar.MONTH)+1) + ","+
-                                calendars.get(Calendar.DATE) + "," + calendars.get(Calendar.HOUR_OF_DAY));
+                String timeInfo = String.valueOf(calendars.get(Calendar.YEAR) + "," +
+                        (calendars.get(Calendar.MONTH) + 1) + "," +
+                        calendars.get(Calendar.DATE) + "," + calendars.get(Calendar.HOUR_OF_DAY));
 
-                try{
+                try {
                     root.put("timeInfo", timeInfo);
                     JSONArray tracelist = new JSONArray();
-                    for(int i=0;i<traceList.size();i++){
+                    for (int i = 0; i < traceList.size(); i++) {
                         JSONObject trace1 = new JSONObject();
-                        trace1.put("time",traceList.get(i).getTime());
-                        trace1.put("event",traceList.get(i).getEvent());
-                        trace1.put("moodx",traceList.get(i).getMood()[0]);
-                        trace1.put("moody",traceList.get(i).getMood()[1]);
-                        tracelist.put(i,trace1);
+                        trace1.put("time", traceList.get(i).getTime());
+                        trace1.put("event", traceList.get(i).getEvent());
+                        trace1.put("moodx", traceList.get(i).getMood()[0]);
+                        trace1.put("moody", traceList.get(i).getMood()[1]);
+                        tracelist.put(i, trace1);
                     }
-                    root.put("traceList",tracelist);
+                    root.put("traceList", tracelist);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 String tracePath = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/tracer";
                 File file = new File(tracePath + "/traceInfo.txt");
                 BufferedWriter out = null;
-                try{
+                try {
                     if (!file.getParentFile().exists()) {
                         file.getParentFile().mkdirs();
                     }
-                    if(!file.exists())
-                    {
+                    if (!file.exists()) {
                         file.createNewFile();
                     }
                     out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
                     out.newLine();//换行
-                    Log.v("haha",root.toString());
+                    Log.v("haha", root.toString());
                     out.write(root.toString());
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
-                }
-                finally {
+                } finally {
                     try {
-                        if(out != null){
+                        if (out != null) {
                             out.close();
                         }
                     } catch (IOException e) {
@@ -328,7 +323,7 @@ public class TraceActivity extends AppCompatActivity {
 
         String dbFile = "/storage/emulated/0/gadgetbridge/gadgetbridge";///data/nodomain.freeyourgadget.gadgetbridge/files/Gadgetbridge";
         File file = new File(dbFile);
-        if (file.exists() && file.length() >0) {
+        if (file.exists() && file.length() > 0) {
             try {
                 SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(dbFile, null);
                 Cursor cursor = db.rawQuery("SELECT STEPS,TIMESTAMP from MI_BAND_ACTIVITY_SAMPLE", null);
@@ -352,22 +347,21 @@ public class TraceActivity extends AppCompatActivity {
                 }
                 cursor.close();
                 db.close();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 Log.e("segment_error", e.toString());
                 e.printStackTrace();
             }
         }
         if (timeList.size() == 0) {
-                    timeList.add("00:00");
-                    timeList.add("08:00");
-                    timeList.add("10:00");
-                    timeList.add("12:00");
-                    timeList.add("14:00");
-                    timeList.add("16:00");
-                    timeList.add("18:00");
-                    timeList.add("20:00");
-                    timeList.add("22:00");
+            timeList.add("00:00");
+            timeList.add("08:00");
+            timeList.add("10:00");
+            timeList.add("12:00");
+            timeList.add("14:00");
+            timeList.add("16:00");
+            timeList.add("18:00");
+            timeList.add("20:00");
+            timeList.add("22:00");
         }
         return timeList;
     }

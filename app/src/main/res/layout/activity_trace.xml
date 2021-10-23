@@ -13,14 +13,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="在最上方添加活动" />
+        android:text="Add activity at the top" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="保存" />
+        android:text="Save" />
 
     <ListView
         android:id="@+id/lvTrace"

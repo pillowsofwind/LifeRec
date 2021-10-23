@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='lifelog_backend'
+rootProject.name='liferec'

@@ -95,7 +95,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
         // jump to Mood to collect current mood
         Intent intent = new Intent();
         intent.setClass(MoodRequestActivity.this, MoodActivity.class);
-        intent.putExtra("title", "你目前的心情如何？");
+        intent.putExtra("title", "How are you feeling now?");
         this.startActivityForResult(intent, 100);
     }
 
@@ -106,9 +106,9 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
         }
         switch (requestCode) {
             case 10:
-                if(resultCode == RESULT_OK)
+                if (resultCode == RESULT_OK)
                     //finish();
-                break;
+                    break;
             case 100:
                 if (resultCode == RESULT_OK) {
                     cur_emotion = data.getExtras().getDoubleArray("mood");
@@ -146,7 +146,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
 
                             emotion_event = ans.getText().toString();
 //                            Toast.makeText(getApplicationContext(), emotion_event, Toast.LENGTH_SHORT).show();
-                            question_text.setText("请记录事件发生时刻：");
+                            question_text.setText("Please record the moment: ");
                             ans.setVisibility(View.INVISIBLE);
                             timePicker.setVisibility(View.VISIBLE);
                             timePicker.setIs24HourView(true);
@@ -176,9 +176,9 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
                             // jump to Mood to collect emotion
                             Intent intent = new Intent();
                             intent.setClass(MoodRequestActivity.this, MoodActivity.class);
-                            intent.putExtra("title", "你当时的心情如何？");
-                            String curEmotionString =  String.format("%.3f", cur_emotion[0]) + "," + String.format("%.3f", cur_emotion[1]);
-                            intent.putExtra("pmood",curEmotionString);
+                            intent.putExtra("title", "How are you feeling then?");
+                            String curEmotionString = String.format("%.3f", cur_emotion[0]) + "," + String.format("%.3f", cur_emotion[1]);
+                            intent.putExtra("pmood", curEmotionString);
                             this.startActivityForResult(intent, 200);
                         }
                         break;
@@ -207,7 +207,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
                 if (yes.isChecked()) {
 //                    Toast.makeText(getApplicationContext(), "请简要描述激发您强烈情绪的事件：", Toast.LENGTH_SHORT).show();
                     got_emotion = true;
-                    question_text.setText("请简要描述激发你强烈情绪的事件：");
+                    question_text.setText("Please briefly describe the events that triggered your strong emotions: ");
                 }
                 break;
             case R.id.mood_request_no:
@@ -216,12 +216,12 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
                     got_emotion = false;
                     String text;
                     if (interval != null) {
-                        text = "请简要描述你过去" + interval + "分钟内进行的活动内容：\n (从以下各项中选择并细化：学习/工作/社工，开会/讨论，娱乐，运动，休息，用餐，睡觉，其他)";
+                        text = "Please briefly describe your activities in last " + interval + " minutes:\n(e.g. study/work, meet/chat, entertainment, sports, rest, meal, sleep, others)";
                     } else {
-                        text = "请简要描述你过去这段时间进行的活动内容：\n (从以下各项中选择并细化：学习/工作/社工，开会/讨论，娱乐，运动，休息，用餐，睡觉，其他)";
+                        text = "Please briefly describe your activities:\n(e.g. study/work, meet/chat, entertainment, sports, rest, meal, sleep, others))";
                     }
                     question_text.setText(text);
-                    button.setText("完成");
+                    button.setText("Finish");
                 }
                 break;
         }
@@ -246,7 +246,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
             String curTimeString = cur_time[0] + ":" + cur_time[1] + ":" + cur_time[2] + ":" + cur_time[3] + ":" + cur_time[4];
             sb.append(curTimeString).append("\t");
             if (!got_emotion) {
-                sb.append("act"+activities).append("\t");
+                sb.append("act" + activities).append("\t");
             }
             String curEmotionString = "(" + String.format("%.2f", cur_emotion[0]) + "," + String.format("%.2f", cur_emotion[1]) + ")";
             sb.append(curEmotionString);
@@ -258,7 +258,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
                 Log.e("Record", emotion_time.toString() + "--" + emotion.toString() + "--" + emotion_event);
                 String timeString = emotion_time[0] + ":" + emotion_time[1] + ":" + emotion_time[2] + ":" + emotion_time[3] + ":" + emotion_time[4];
                 sb1.append(timeString).append("\t");
-                sb1.append(emotion_event.replace('\n',' ')).append("\t");
+                sb1.append(emotion_event.replace('\n', ' ')).append("\t");
                 String emotionString = "(" + String.format("%.2f", emotion[0]) + "," + String.format("%.2f", emotion[1]) + ")";
                 Log.e("Record", emotionString);
                 sb1.append(emotionString).append("\te");
@@ -281,23 +281,22 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
         return false;
     }
 
-    private void showMusicDialog()
-    {
+    private void showMusicDialog() {
         builder = new AlertDialog.Builder(this).setIcon(R.mipmap.ic_launcher).setTitle("Music")
-                .setMessage("你是否想听音乐").setPositiveButton("是", new DialogInterface.OnClickListener() {
+                .setMessage("Would you like to hear some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodRequestActivity.this, "听音乐", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent();
                         intent.setClass(MoodRequestActivity.this, MusicActivity.class);
                         intent.putExtra("title", "notMood");
-                        String curEmotionString =  String.format("%.3f", cur_emotion[0]) + "," + String.format("%.3f", cur_emotion[1]);
-                        Log.d("music_mood_a",curEmotionString);
-                        Log.d("music_mood_b",String.format("%.3f",emotion[0]));
-                        intent.putExtra("pmood",curEmotionString);
+                        String curEmotionString = String.format("%.3f", cur_emotion[0]) + "," + String.format("%.3f", cur_emotion[1]);
+                        Log.d("music_mood_a", curEmotionString);
+                        Log.d("music_mood_b", String.format("%.3f", emotion[0]));
+                        intent.putExtra("pmood", curEmotionString);
                         startActivityForResult(intent, 10);
                     }
-                }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodRequestActivity.this, "不听音乐", Toast.LENGTH_LONG).show();

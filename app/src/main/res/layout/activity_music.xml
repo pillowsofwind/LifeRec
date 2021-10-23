@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1.请寻找较安静的地方，戴上耳机。\n2. 点击聆听以下音乐。\n3. 在听音乐后返回本页面评分及记录情绪。"
-        android:textSize="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        />
+        android:text="1. Please find a quiet place and put on your headphones \n2. Click to listen to the following music \n3. After listening to music, return to this page to score and record emotion." />
 
     <ListView
         android:id="@+id/music_list"
@@ -25,11 +24,11 @@
 
     <Button
         android:id="@+id/music_back_button"
-        android:layout_height="wrap_content"
         android:layout_width="80dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="15"
         android:background="@drawable/btn_shape_green"
-        android:text="返回"
-        android:textSize="15dp"/>
+        android:text="Back"
+        android:textSize="15dp" />
 </LinearLayout>

@@ -61,8 +61,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         lunch_Textview = findViewById(R.id.TV_lunch_time);
         dinner_Textview = findViewById(R.id.TV_dinner_time);
 
-        user_editText.setHint("请输入用户编号");
-        bluetooth_editText.setHint("请输入手环编号");
+        user_editText.setHint("Please set user index");
+        bluetooth_editText.setHint("Please set bracelet index");
 
         String Setting_Path = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/setting/";
         File openFile = new File(Setting_Path + "setting.json");
@@ -91,8 +91,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             String reminderClocks = object.get("reminder_clocks").getAsString();
 
-            for (String clockId : reminderClocks.split(",")){
-                int resID = getResources().getIdentifier("moment_"+clockId,"id",getPackageName());
+            for (String clockId : reminderClocks.split(",")) {
+                int resID = getResources().getIdentifier("moment_" + clockId, "id", getPackageName());
                 CheckBox cb = (CheckBox) findViewById(resID);
                 cb.setChecked(true);
             }
@@ -201,14 +201,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         String dinner_time_setting = dinner_Textview.getText().toString();
 
         String reminderClocks = "";
-        for (int i=0; i<14;i++){
-            int resID = getResources().getIdentifier("moment_"+ Integer.toString(i),"id",getPackageName());
+        for (int i = 0; i < 14; i++) {
+            int resID = getResources().getIdentifier("moment_" + Integer.toString(i), "id", getPackageName());
             CheckBox cb = (CheckBox) findViewById(resID);
-            if(cb.isChecked()){
-                reminderClocks += ","+Integer.toString(i);
+            if (cb.isChecked()) {
+                reminderClocks += "," + Integer.toString(i);
             }
         }
-        if(reminderClocks.length()>0){
+        if (reminderClocks.length() > 0) {
             reminderClocks = reminderClocks.substring(1);
         }
 
@@ -269,7 +269,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         object.addProperty("breakfast_time_setting", breakfast_time_setting);
         object.addProperty("lunch_time_setting", lunch_time_setting);
         object.addProperty("dinner_time_setting", dinner_time_setting);
-        object.addProperty("reminder_clocks",reminderClocks);
+        object.addProperty("reminder_clocks", reminderClocks);
 
         File setting_file2 = new File(Setting_Path + "setting.json");
 
@@ -296,7 +296,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
 
         }
-        return(reminderClocks);
+        return (reminderClocks);
     }
 
     private void startNotification(String clocks) {
@@ -310,7 +310,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         i.putExtra("breakfast", breakfast_time_setting);
         i.putExtra("lunch", lunch_time_setting);
         i.putExtra("dinner", dinner_time_setting);
-        i.putExtra("clocks",clocks);
+        i.putExtra("clocks", clocks);
         startService(i);
 
     }

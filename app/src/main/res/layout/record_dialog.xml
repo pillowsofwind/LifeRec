@@ -23,7 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:hint="活动内容"
+        android:hint="What's the activity?"
         android:minHeight="45dp"
         android:textSize="18sp" />
 
@@ -32,7 +32,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:hint="心情"
+        android:hint="What's your mood?"
         android:minHeight="45dp"
         android:textSize="18sp" />
 
@@ -41,13 +41,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="设置心情" />
+        android:text="Set your mood" />
 
     <Button
         android:id="@+id/btn_save_pop"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="保存" />
+        android:text="Save" />
 
 </LinearLayout>
