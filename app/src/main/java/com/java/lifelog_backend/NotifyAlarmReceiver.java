@@ -24,22 +24,22 @@ public class NotifyAlarmReceiver extends BroadcastReceiver {
         // an Intent broadcast.
         NotificationManager manager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 //        Notification notification = new Notification(context);
-        Notification notification=null;
-        String id="mychannel";//通道id
-        String name="通道1";//通道名称
-        Log.e("alarm",intent.toString());
+        Notification notification = null;
+        String id = "mychannel";//通道id
+        String name = "channel1";//通道名称
+        Log.e("alarm", intent.toString());
         //String notifyText=intent.getStringExtra("notifyText");
         //int alarmId=intent.getIntExtra("alarmId",-1);
         Bundle extras = intent.getExtras();
-        String notifyText=(String) extras.get("notifyText");
-        int alarmId=(Integer)extras.get("alarmId");
-        if (alarmId==0){
+        String notifyText = (String) extras.get("notifyText");
+        int alarmId = (Integer) extras.get("alarmId");
+        if (alarmId == 0) {
             return;
         }
-        Log.e("alarmText",notifyText+":"+alarmId);
+        Log.e("alarmText", notifyText + ":" + alarmId);
         long[] pattern = new long[]{1000, 1000, 1000, 1000, 1000};
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel= new NotificationChannel(id,name,NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH);
             channel.enableVibration(true);
             channel.setVibrationPattern(pattern);
             channel.enableLights(true);
@@ -48,8 +48,8 @@ public class NotifyAlarmReceiver extends BroadcastReceiver {
             manager.createNotificationChannel(channel);
             //创建通知
             Intent nextIntent = new Intent(context, ResolveNotification.class);
-            nextIntent.putExtra("notifyText",notifyText);
-            notification=new Notification.Builder(context.getApplicationContext(),id)
+            nextIntent.putExtra("notifyText", notifyText);
+            notification = new Notification.Builder(context.getApplicationContext(), id)
                     //setLargeIcon 设置大图标
                     //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.wolf))
                     //setSmallIcon 设置小图标
@@ -59,26 +59,26 @@ public class NotifyAlarmReceiver extends BroadcastReceiver {
                     //setStyle 设置样式
                     //.setStyle(new Notification.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.wolf)))
                     //setContentTitle 设置标题
-                    .setContentTitle("Lifelog recorder 提醒")
+                    .setContentTitle("LifeRec reminder")
                     //setAutoCancel点击过后取消显示
                     .setAutoCancel(true)
                     //帮对应的Activity
-                    .setContentIntent(PendingIntent.getActivity(context.getApplicationContext(),1,nextIntent, PendingIntent.FLAG_UPDATE_CURRENT))
+                    .setContentIntent(PendingIntent.getActivity(context.getApplicationContext(), 1, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT))
                     .setWhen(System.currentTimeMillis())
-                    .setTicker("Lifelog recorder 提醒")
+                    .setTicker("LifeRec reminder")
                     .setOngoing(true)
                     .build();
-            notification.flags=Notification.FLAG_NO_CLEAR;
-        }else{
+            notification.flags = Notification.FLAG_NO_CLEAR;
+        } else {
             //安卓4.0-8.0
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                notification =new Notification.Builder(context.getApplicationContext()
+                notification = new Notification.Builder(context.getApplicationContext()
                 )//setSmallIcon 设置小图标
                         //.setSmallIcon(R.drawable.ic_event_note_black_24dp)
                         //setContentText 设置内容
                         .setContentText(notifyText)
                         //setContentTitle 设置标题
-                        .setContentTitle("Lifelog recorder提醒")
+                        .setContentTitle("LifeRec reminder")
                         //setAutoCancel点击过后取消显示
                         .setAutoCancel(false)
 //                        .setContentIntent(
@@ -92,13 +92,13 @@ public class NotifyAlarmReceiver extends BroadcastReceiver {
                         .build();
             }
         }
-        manager.notify(0,notification);
-        Log.e("alarm","发送成功:"+notifyText+":"+Integer.toString(alarmId));
+        manager.notify(0, notification);
+        Log.e("alarm", "发送成功:" + notifyText + ":" + Integer.toString(alarmId));
         AlarmTimer timer = new AlarmTimer();
-        long repeatTime = 24*60*60*1000;
+        long repeatTime = 24 * 60 * 60 * 1000;
         long systemTime = System.currentTimeMillis();
-        Log.e("alarm_next",Long.toString(systemTime+repeatTime));
-        timer.setRepeatingAlarmTimer(context, systemTime+repeatTime, AlarmManager.RTC_WAKEUP,intent);
+        Log.e("alarm_next", Long.toString(systemTime + repeatTime));
+        timer.setRepeatingAlarmTimer(context, systemTime + repeatTime, AlarmManager.RTC_WAKEUP, intent);
     }
 
 
