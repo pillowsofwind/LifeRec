@@ -41,7 +41,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class MusicActivity  extends AppCompatActivity{
+public class MusicActivity extends AppCompatActivity {
     Button backButton;
     boolean fromMoodActivity;
     String musicURL = "https://y.qq.com/n/yqq/song/001g6fPZ0pCL5K.html";
@@ -49,11 +49,12 @@ public class MusicActivity  extends AppCompatActivity{
     String pmood = "";
     String userName;
     String urlResponseText;
-    List<MusicInfo>musicInfos;
+    List<MusicInfo> musicInfos;
     MusicAdapter musicAdapter;
     ListView mListView;
     int selectIndex = -1;
     int userPreference = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +66,12 @@ public class MusicActivity  extends AppCompatActivity{
         mListView.setAdapter(musicAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             boolean selected = false;
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if(position == 0 || selected) return;
-                MusicInfo musicInfo = (MusicInfo) adapterView.getItemAtPosition(position-1);
-                selectIndex = position-1;
+                if (position == 0 || selected) return;
+                MusicInfo musicInfo = (MusicInfo) adapterView.getItemAtPosition(position - 1);
+                selectIndex = position - 1;
                 selected = true;
                 Uri uri = Uri.parse(musicInfo.musicURL);
                 Intent intent = new Intent();
@@ -82,23 +84,21 @@ public class MusicActivity  extends AppCompatActivity{
         });
         //userName = null;
         selectIndex = -1;
-        backButton = (Button)findViewById(R.id.music_back_button);
+        backButton = (Button) findViewById(R.id.music_back_button);
         fromMoodActivity = false;
         init();
         sendUserInfo();
     }
 
-    private void init()
-    {
+    private void init() {
         String from = getIntent().getStringExtra("title");
         pmood = getIntent().getStringExtra("pmood");
-        Log.d("music_mood",pmood);
-        if(from.equals("mood")) fromMoodActivity = true;
+        Log.d("music_mood", pmood);
+        if (from.equals("mood")) fromMoodActivity = true;
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fromMoodActivity)
-                {
+                if (fromMoodActivity) {
                     Intent intent = new Intent();
                     intent.putExtra("selectedIndex", selectIndex);
                     intent.putExtra("userName", userName);
@@ -107,9 +107,7 @@ public class MusicActivity  extends AppCompatActivity{
                     intent.putExtra("musicNum", musicInfos.size());
                     setResult(RESULT_OK, intent);
                     finish();
-                }
-                else
-                {
+                } else {
                     Intent intent = new Intent();
                     intent.setClass(MusicActivity.this, MoodActivity.class);
                     intent.putExtra("title", "music");
@@ -120,17 +118,15 @@ public class MusicActivity  extends AppCompatActivity{
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
-        if(data == null)
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (data == null)
             return;
-        switch (requestCode){
+        switch (requestCode) {
             case 10:
-                if(resultCode == RESULT_OK)
-                {
-                    double[] new_mood = new double[]{0,0};
+                if (resultCode == RESULT_OK) {
+                    double[] new_mood = new double[]{0, 0};
                     new_mood = data.getExtras().getDoubleArray("mood");
-                    double[] old_mood = new double[]{0,0};
+                    double[] old_mood = new double[]{0, 0};
                     old_mood = getLatestMood();
                     Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
@@ -141,46 +137,41 @@ public class MusicActivity  extends AppCompatActivity{
                     objectList.add(object.getAsJsonObject("1"));
                     objectList.add(object.getAsJsonObject("2"));
                     JsonObject allObject = new JsonObject();
-                    for(int i=0;i<musicInfos.size();i++)
-                    {
+                    for (int i = 0; i < musicInfos.size(); i++) {
                         JsonObject musicObject = new JsonObject();
-                        if(i == selectIndex)
-                        {
+                        if (i == selectIndex) {
                             musicObject.addProperty("click", 1);
                             musicObject.addProperty("preference", userPreference);
-                        }
-                        else
-                        {
+                        } else {
                             musicObject.addProperty("click", 0);
                             musicObject.addProperty("preference", 0);
                         }
                         musicObject.addProperty("mid", objectList.get(i).get("mid").getAsString());
 //                        musicObject.addProperty("mood_before", old_mood[0]+","+old_mood[1]);
-                        Log.d("music_mood_b",pmood);
-                        musicObject.addProperty("mood_before",pmood);
-                        musicObject.addProperty("mood_after", new_mood[0]+","+new_mood[1]);
+                        Log.d("music_mood_b", pmood);
+                        musicObject.addProperty("mood_before", pmood);
+                        musicObject.addProperty("mood_after", new_mood[0] + "," + new_mood[1]);
                         musicObject.addProperty("valence", objectList.get(i).get("valence").getAsString());
-                        if(i == 0)
+                        if (i == 0)
                             allObject.addProperty("0", musicObject.toString());
-                        else if(i == 1)
-                            allObject.addProperty("1",musicObject.toString());
-                        else if(i ==2)
+                        else if (i == 1)
+                            allObject.addProperty("1", musicObject.toString());
+                        else if (i == 2)
                             allObject.addProperty("2", musicObject.toString());
                     }
                     OkHttpClient client = new OkHttpClient();
                     RequestBody body = null;
-                    Log.d("music_mood_s",allObject.toString());
+                    Log.d("music_mood_s", allObject.toString());
                     body = new FormBody.Builder().add("music", allObject.toString()).build();
-                    if(body != null)
-                    {
-                        Request request = new Request.Builder().url(serverURL+userName).post(body).build();
+                    if (body != null) {
+                        Request request = new Request.Builder().url(serverURL + userName).post(body).build();
                         Call call = client.newCall(request);
                         call.enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
                                 Log.i("app", "提交失败");
                                 Looper.prepare();
-                                Toast.makeText(getBaseContext(),"Failed",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "Failed", Toast.LENGTH_SHORT).show();
                                 Looper.loop();
                                 finish();
                             }
@@ -189,16 +180,15 @@ public class MusicActivity  extends AppCompatActivity{
                             public void onResponse(Call call, Response response) throws IOException {
                                 Log.i("app", "提交成功");
                                 Looper.prepare();
-                                Toast.makeText(getBaseContext(),"Succeed" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "Succeed", Toast.LENGTH_SHORT).show();
                                 Looper.loop();
                                 finish();
                             }
                         });
-                    }
-                    else finish();
+                    } else finish();
                     finish();
                 }
-            break;
+                break;
         }
     }
 
@@ -207,25 +197,22 @@ public class MusicActivity  extends AppCompatActivity{
         super.onDestroy();
     }
 
-    protected void sendUserInfo()
-    {
+    protected void sendUserInfo() {
         //userName = getUserName();
-        if(userName == null)
+        if (userName == null)
             userName = "anonymous user";
-        System.out.println("send Info:"+userName);
+        System.out.println("send Info:" + userName);
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(serverURL+userName+"__"+pmood).build();
+        Request request = new Request.Builder().url(serverURL + userName + "__" + pmood).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 System.out.println("on Failure: Fail");
 
-                runOnUiThread(new Runnable()
-                {
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void run()
-                    {
-                        Toast.makeText(getBaseContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+                    public void run() {
+                        Toast.makeText(getBaseContext(), "No internet connection", Toast.LENGTH_SHORT).show();
                         // Intent i = new Intent(MusicActivity.this, MainActivity.class);
                         // startActivity(i);
                         finish();
@@ -269,16 +256,13 @@ public class MusicActivity  extends AppCompatActivity{
                             }
                         }
                     }));
-                }
-                else{
+                } else {
                     System.out.println("response Fail");
 
-                    runOnUiThread(new Runnable()
-                    {
+                    runOnUiThread(new Runnable() {
                         @Override
-                        public void run()
-                        {
-                            Toast.makeText(getBaseContext(),"Fail to acquire music information",Toast.LENGTH_SHORT).show();
+                        public void run() {
+                            Toast.makeText(getBaseContext(), "Fail to acquire music information", Toast.LENGTH_SHORT).show();
                             // Intent i = new Intent(MusicActivity.this, MainActivity.class);
                             // startActivity(i);
                             finish();
@@ -289,44 +273,36 @@ public class MusicActivity  extends AppCompatActivity{
         });
     }
 
-    private void getUserName()
-    {
+    private void getUserName() {
         String fileName = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/setting/setting.json";
         File file = new File(fileName);
         BufferedReader reader = null;
-        try{
-            if(file.exists())
-            {
+        try {
+            if (file.exists()) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                 String jsonContent = reader.readLine().toString();
                 System.out.println(jsonContent);
                 JsonParser parser = new JsonParser();
                 JsonElement element = parser.parse(jsonContent);
-                if(element.isJsonObject())
-                {
+                if (element.isJsonObject()) {
                     JsonObject object = element.getAsJsonObject();
                     userName = object.get("user_id").getAsString();
-                    System.out.println("User id:"+userName);
+                    System.out.println("User id:" + userName);
                 }
             }
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            try{
-                if(reader != null) reader.close();
-            }
-            catch (Exception e)
-            {
+        } finally {
+            try {
+                if (reader != null) reader.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
     }
 
-    private void showRatingDialog()
-    {
+    private void showRatingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicActivity.this);
         builder.setTitle("Please score this song just now:");
         final String[] tempKey = {"1 (strongly dislike)", "2 (dislike)", "3 (average)", "4 (like)", "5 (strongly like)"};
@@ -341,26 +317,25 @@ public class MusicActivity  extends AppCompatActivity{
         builder.show();
     }
 
-    private double[] getLatestMood()
-    {
+    private double[] getLatestMood() {
         String fileName = Environment.getExternalStorageDirectory() + "/com.java.lifelog_backend/emotion/user_submitted_emotions.txt";
         File file = new File(fileName);
         BufferedReader reader = null;
-        double[] latestMood = new double[]{0,0};
-        try{
-            if(file.exists())
-            {
+        double[] latestMood = new double[]{0, 0};
+        try {
+            if (file.exists()) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                 String line = "";
                 String temp = "";
                 //读取最后一行的内容
-                while((temp = reader.readLine()) != null) { line = temp;}
+                while ((temp = reader.readLine()) != null) {
+                    line = temp;
+                }
                 int begin = 0, end = 0;
-                for(int i=0;i<line.length();i++)
-                {
-                    if(line.charAt(i) == "(".toCharArray()[0])
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == "(".toCharArray()[0])
                         begin = i + 1;
-                    if(line.charAt(i) == ")".toCharArray()[0])
+                    if (line.charAt(i) == ")".toCharArray()[0])
                         end = i;
                 }
                 String array = line.substring(begin, end);
@@ -369,16 +344,12 @@ public class MusicActivity  extends AppCompatActivity{
                 latestMood[1] = Float.parseFloat(temp2[1]);
                 //System.out.println(latestMood[0]);
             }
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            try{
-                if(reader != null) reader.close();
-            }
-            catch (Exception e)
-            {
+        } finally {
+            try {
+                if (reader != null) reader.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

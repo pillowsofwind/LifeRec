@@ -193,7 +193,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
 
         state = 1;
         button.setVisibility(View.VISIBLE);
-        button.setText("下一步");
+        button.setText("Next");
 
         // clear all data collected
         emotion_event = "";
@@ -283,7 +283,7 @@ public class MoodRequestActivity extends AppCompatActivity implements View.OnCli
 
     private void showMusicDialog() {
         builder = new AlertDialog.Builder(this).setIcon(R.mipmap.ic_launcher).setTitle("Music")
-                .setMessage("Would you like to hear some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setMessage("Would you like to listen to some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodRequestActivity.this, "听音乐", Toast.LENGTH_LONG).show();

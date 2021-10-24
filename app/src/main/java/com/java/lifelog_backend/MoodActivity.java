@@ -299,7 +299,7 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showMusicDialog() {
         builder = new AlertDialog.Builder(this).setIcon(R.mipmap.ic_launcher).setTitle("Music")
-                .setMessage("Would you like to hear some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setMessage("Would you like to listen to some music").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(MoodActivity.this, "听音乐", Toast.LENGTH_LONG).show();
