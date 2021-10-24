@@ -229,7 +229,7 @@ public class MoodActivity extends AppCompatActivity implements View.OnClickListe
                 double height = findViewById(R.id.mood_pic).getHeight();
                 double mid_x = width / 2;
                 double mid_y = height / 2;
-                double square_len = mid_x * 0.723;
+                double square_len = mid_x * 0.665;
 
                 location[0] = (int) event.getX();
                 location[1] = (int) event.getY();
