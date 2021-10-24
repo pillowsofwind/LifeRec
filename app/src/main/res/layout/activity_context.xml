@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollview"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-<!--<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".ContextActivity">-->
+    <!--<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".ContextActivity">-->
 
     <LinearLayout
         android:id="@+id/context_all"
@@ -29,12 +29,12 @@
 
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Your location:"
-            android:textSize="20dp"
             android:textColor="@android:color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -52,29 +52,29 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.26">
 
-        <RadioButton
-            android:id="@+id/door_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:checked="true"
-            android:text="Indoor" />
+            <RadioButton
+                android:id="@+id/door_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Indoor"
+                android:textSize="18dp" />
 
-        <RadioButton
-            android:id="@+id/door_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Outdoor" />
+            <RadioButton
+                android:id="@+id/door_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outdoor"
+                android:textSize="18dp" />
         </RadioGroup>
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Your surrounding: "
-            android:textSize="20dp"
             android:textColor="@android:color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -96,33 +96,33 @@
                 android:id="@+id/company_alone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
                 android:checked="true"
-                android:text="I'm alone" />
+                android:text="I'm alone"
+                android:textSize="18dp" />
 
 
-        <RadioButton
-            android:id="@+id/company_stranger"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Somebody around but no conversation"
-            android:textSize="18dp" />
+            <RadioButton
+                android:id="@+id/company_stranger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Somebody around but no conversation"
+                android:textSize="18dp" />
 
-        <RadioButton
-            android:id="@+id/company_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Somebody around and conversation"
-            android:textSize="18dp" />
+            <RadioButton
+                android:id="@+id/company_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Somebody around and conversation"
+                android:textSize="18dp" />
         </RadioGroup>
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Where are you？"
-            android:textSize="20dp"
             android:textColor="@android:color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -144,9 +144,9 @@
                 android:id="@+id/location_dorm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
                 android:checked="true"
-                android:text="At home" />
+                android:text="At home"
+                android:textSize="18dp" />
 
 
             <RadioButton
@@ -196,19 +196,19 @@
                 android:id="@+id/location_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Others"
+                android:text="Other"
                 android:textSize="18dp" />
 
         </RadioGroup>
 
 
         <TextView
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Current location (If you selevt 'Others' in the above question):"
-            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Your Current location (answer below only if you select 'Other' in the question above):"
             android:textColor="@android:color/black"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -237,6 +237,4 @@
     </LinearLayout>
 
 
-
-</ScrollView>
-<!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+</ScrollView><!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->

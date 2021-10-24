@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please recall carefully whether there have been short-term events to stimulate emotions since the last record\ N (refers to events lasting from seconds to minutes, i.e. learning a news, knowing your grades, receiving gifts, etc.)"
+        android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
