@@ -233,23 +233,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Mark reminder time: "
-                android:textSize="18sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/TV_tagging_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="2dp"
                 android:text="00:00"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/set_tagging_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:text="Modify"
-                android:textSize="18sp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -263,15 +262,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Breakfast reminder time: "
-                android:textSize="18sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/TV_breakfast_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="2dp"
                 android:text="00:00"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/set_breakfast_time"
@@ -279,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:text="Modify"
-                android:textSize="18sp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -293,13 +292,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Lunch reminder time: "
-                android:textSize="18sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/TV_lunch_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="2dp"
                 android:text="00:00"
                 android:textSize="18sp" />
 
@@ -309,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:text="Modify"
-                android:textSize="18sp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -323,13 +322,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Supper reminder time:"
-                android:textSize="18sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/TV_dinner_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="2dp"
                 android:text="00:00"
                 android:textSize="18sp" />
 
@@ -339,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:text="Modify"
-                android:textSize="18sp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <Button

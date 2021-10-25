@@ -304,7 +304,7 @@ public class MusicActivity extends AppCompatActivity {
 
     private void showRatingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicActivity.this);
-        builder.setTitle("Please score this song just now:");
+        builder.setTitle("Please score this song:");
         final String[] tempKey = {"1 (strongly dislike)", "2 (dislike)", "3 (average)", "4 (like)", "5 (strongly like)"};
         builder.setItems(tempKey, new DialogInterface.OnClickListener() {
             @Override
